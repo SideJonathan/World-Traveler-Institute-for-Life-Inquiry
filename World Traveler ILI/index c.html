@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
+                url("background.jpg") center / cover no-repeat fixed;
+            animation: pageFadeIn 1.2s ease-out forwards;
+            opacity: 0;
+            filter: blur(2px);
+            padding: 30px 40px;
+        }
+
+        @keyframes pageFadeIn {
+            to {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: contentUp 1s 0.4s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2c4e3a;
+        }
+
+        .home-btn {
+            padding: 10px 24px;
+            background-color: #3a6b4e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #2c543c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .article-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255,255,255,0.88);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            animation: contentUp 1s 0.6s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        @keyframes contentUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .article-text {
+            font-family: "楷体", "KaiTi", serif;
+            line-height: 2.2;
+            font-size: 17px;
+            color: #333;
+            text-align: justify;
+        }
+
+        .author {
+            font-family: "Microsoft Yahei", sans-serif;
+            font-size: 15px;
+            color: #555;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            font-size: 13px;
+            color: #555;
+            border-top: 1px solid #ddd;
+            animation: contentUp 1s 0.8s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .article-wrap {
+                padding: 25px 20px;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>关于我们</h1>
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
+
+    <div class="article-wrap">
+        <div class="article-text">
+            太虚寥廓，宸宇泱茫，星槎巡碧落之垠，造化蕴生生之秘。天地玄黄以来，万象肇基，灵炁流转，既有星域迁化之轨，亦含生命衍赓之理。世间庶类，囿于方寸寰区，止识地脉生灵之常，未睹八荒异态、域外生机之奇。本中心肇立星海，寄志穹苍，以星际为疆，以生学为宗，穷究寰宇生命之奧旨，探赜万灵演化之真机。<br><br>
+            夫生命者，非囿水土形质之拘，实乃炁构衍化、熵序存续之灵机。寰内生灵，以细胞为基、核酸为脉，藉代谢以存续，凭迭代以衍进；而星河寥邈，异星壤境殊，寒燠异度，气场迥别，其所孳育之灵，或质构殊异、代谢殊途，或无躯凝炁、异态存生，皆为造化未启之秘、学界未穷之域。世人研生，多拘于本星之囿，守窠臼、滞陈说，难窥生命形制之无穷。<br><br>
+            本中心聚寰宇笃学之士，秉格物致知之心，破疆域之桎梏，开星生之新境。上溯鸿蒙肇始之化，下研异星孳乳之变，精探胞质衍化、基因流变之律，辨析灵智萌生、种群演替之规，察微渺之炁变，辨幽隐之质迁。但凡域外生灵之形态构质、代谢机制、适境潜能、迭代演化，皆为吾辈求索之旨。不以浅知蔽玄微，不以常理囿异态，慎究熵变生息之度，深窥灵机存续之根。<br><br>
+            星河无尽，道蕴无穷，生命之姿，万变不竭。我辈承求索之初心，负探玄之远志，驰星轨、蹈沧溟，遍历诸天星域，蒐辑异态生灵，汇万方生象之脉络，补古今生学之阙遗。既究微观胞核之幽微，亦探宏观种群之兴替，融星象运化之理、生命衍续之道，贯通天人，洞彻玄奥。<br><br>
+            立苍穹以观万象，究生息以通至理。本中心愿秉赤诚、持笃行，破星际之迷障，启生命之新篇，让寰宇生生之秘，昭然于星海，流布于千秋。
+        </div>
+        <div class="author">作者：Jonathan Sun</div>
+    </div>
+
+    <div class="copyright">
+        © World Traveler Institute for Life Inquiry，2026
+    </div>
+</body>
+</html>
