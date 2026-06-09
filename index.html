@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星球旅行者生命研究中心 - 主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        /* 页面入场动画 + 淡化实景背景 */
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
+                url("background.jpg") center / cover no-repeat fixed;
+            background-color: #f5faf5;
+            animation: pageFadeIn 1.2s ease-out forwards;
+            opacity: 0;
+            filter: blur(2px);
+        }
+
+        /* 整体淡入动画 */
+        @keyframes pageFadeIn {
+            to {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        /* 左侧导航栏：滑入动画 */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background-color: rgba(90, 157, 109, 0.85);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 60px 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            animation: sidebarSlide 0.8s 0.4s ease-out forwards;
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        @keyframes sidebarSlide {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-list {
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-list li {
+            margin-bottom: 16px;
+        }
+
+        .nav-list a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 17px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-list a:hover {
+            background-color: rgba(255,255,255,0.2);
+            padding-left: 24px;
+        }
+
+        .nav-list a.active {
+            background-color: rgba(255,255,255,0.25);
+        }
+
+        /* 版权信息 */
+        .copyright {
+            color: #e8f1e9;
+            font-size: 13px;
+            text-align: center;
+            padding-top: 30px;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            animation: copyrightFade 1s 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes copyrightFade {
+            to { opacity: 1; }
+        }
+
+        /* 主内容区：上浮动画 */
+        .main-content {
+            margin-left: 240px;
+            flex: 1;
+            padding: 60px 80px;
+            animation: contentUp 1s 0.6s ease-out forwards;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        @keyframes contentUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .page-title {
+            font-size: 36px;
+            color: #4a7c59;
+            margin-bottom: 30px;
+        }
+
+        .content-desc {
+            font-size: 16px;
+            color: #555;
+            line-height: 2;
+            max-width: 800px;
+            margin-bottom: 35px;
+        }
+
+        /* 退出登录按钮 —— 柔和低对比红色样式 */
+        .logout-btn {
+            padding: 12px 32px;
+            background-color: #fdf6f6;       /* 极浅红色背景，不刺眼 */
+            border: 1px solid #d47878;      /* 柔和红色边框 */
+            color: #b95858;                 /* 文字红色 */
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #fbeaea;
+            border-color: #c75c5c;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .sidebar { width: 180px; }
+            .main-content { margin-left: 180px; padding: 40px 30px; }
+            .page-title { font-size: 28px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左侧导航 -->
+    <aside class="sidebar">
+        <ul class="nav-list">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="index a.html">生命科学研究资料</a></li>
+            <li><a id="videoBtn">生命科学研究影像</a></li>
+            <li><a href="index c.html">关于我们</a></li>
+        </ul>
+        <div class="copyright">
+            © World Traveler Institute for Life Inquiry<br>
+            2026
+        </div>
+    </aside>
+
+    <!-- 主内容 -->
+    <main class="main-content">
+        <h1 class="page-title">欢迎来到星球旅行者生命研究中心</h1>
+        <p class="content-desc">
+            太虚寥廓，星汉垂文；乾坤化育，生命流芳。自鸿蒙肇始，万象萌生，星河载天地之灵，众生蕴造化之奇。今星旅生命研究中心轩门大开，恭迎四方雅士。纵目则星河漫卷，凝神则灵息深藏。于此穷究生灭之理，辨析形神之妙，探寰宇生灵之脉络，悟自然运化之真机。愿同执求索之炬，踏遍星海，深究生命大道，共览万古生机。
+        </p>
+
+        <!-- 退出登录按钮（放在段落下方） -->
+        <button class="logout-btn" id="logout">退出登录</button>
+    </main>
+
+    <script>
+        // 影像栏目弹窗提示
+        const videoBtn = document.getElementById('videoBtn');
+        videoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('该区域正在开发，敬请期待');
+        });
+
+        // 退出登录，返回登录页
+        const logoutBtn = document.getElementById('logout');
+        logoutBtn.addEventListener('click', function(){
+            if(confirm('确定要退出当前登录吗？')){
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>
