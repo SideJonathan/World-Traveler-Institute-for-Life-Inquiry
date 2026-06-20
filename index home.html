@@ -62,6 +62,7 @@
 
         .nav-list li {
             margin-bottom: 16px;
+            position: relative;
         }
 
         .nav-list a {
@@ -82,6 +83,52 @@
 
         .nav-list a.active {
             background-color: rgba(255,255,255,0.25);
+        }
+
+        /* 导航栏柔和NEW角标 */
+        .new-badge {
+            position: absolute;
+            right: 14px;
+            top: 12px;
+            background-color: #d96464;
+            color: #fff8f8;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 2px 6px;
+            border-radius: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+        }
+
+        /* 新增：页面内低对比度信息提示栏 */
+        .info-notice {
+            background-color: rgba(90, 157, 109, 0.12);
+            border: 1px solid rgba(90, 157, 109, 0.22);
+            border-radius: 10px;
+            padding: 16px 22px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .info-title {
+            font-size: 18px;
+            color: #4a7c59;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-new-tag {
+            background-color: #d96464;
+            color: #fff8f8;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 8px;
+        }
+        .info-tip {
+            font-size: 14px;
+            color: #698c74;
+            margin-left: 8px;
         }
 
         /* 版权信息 */
@@ -134,9 +181,9 @@
         /* 退出登录按钮 —— 柔和低对比红色样式 */
         .logout-btn {
             padding: 12px 32px;
-            background-color: #fdf6f6;       /* 极浅红色背景，不刺眼 */
-            border: 1px solid #d47878;      /* 柔和红色边框 */
-            color: #b95858;                 /* 文字红色 */
+            background-color: #fdf6f6;
+            border: 1px solid #d47878;
+            color: #b95858;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
@@ -153,6 +200,19 @@
             .sidebar { width: 180px; }
             .main-content { margin-left: 180px; padding: 40px 30px; }
             .page-title { font-size: 28px; }
+            .new-badge {
+                right: 8px;
+                font-size: 10px;
+                padding: 1px 4px;
+                background-color: #ce5c5c;
+            }
+            .info-notice {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+            }
+            .info-title {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -163,7 +223,10 @@
         <ul class="nav-list">
             <li><a href="#" class="active">Home</a></li>
             <li><a href="index a.html">生命科学研究资料</a></li>
-            <li><a id="videoBtn">生命科学研究影像</a></li>
+            <li>
+                <a href="index b.html">市统测复习</a>
+                <span class="new-badge">NEW</span>
+            </li>
             <li><a href="index c.html">关于我们</a></li>
         </ul>
         <div class="copyright">
@@ -179,18 +242,20 @@
             太虚寥廓，星汉垂文；乾坤化育，生命流芳。自鸿蒙肇始，万象萌生，星河载天地之灵，众生蕴造化之奇。今星旅生命研究中心轩门大开，恭迎四方雅士。纵目则星河漫卷，凝神则灵息深藏。于此穷究生灭之理，辨析形神之妙，探寰宇生灵之脉络，悟自然运化之真机。愿同执求索之炬，踏遍星海，深究生命大道，共览万古生机。
         </p>
 
-        <!-- 退出登录按钮（放在段落下方） -->
+        <!-- 新增低对比度信息栏：文字下方、退出按钮上方 -->
+        <div class="info-notice">
+            <div class="info-title">
+                星球旅行者生命月刊
+                <span class="info-new-tag">NEW</span>
+            </div>
+            <span class="info-tip">开发中，敬请期待</span>
+        </div>
+
+        <!-- 退出登录按钮 -->
         <button class="logout-btn" id="logout">退出登录</button>
     </main>
 
     <script>
-        // 影像栏目弹窗提示
-        const videoBtn = document.getElementById('videoBtn');
-        videoBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('该区域正在开发，敬请期待');
-        });
-
         // 退出登录，返回登录页
         const logoutBtn = document.getElementById('logout');
         logoutBtn.addEventListener('click', function(){
