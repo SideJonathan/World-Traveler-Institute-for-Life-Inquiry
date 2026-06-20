@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市统一考试复习专区</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
+                url("background.jpg") center / cover no-repeat fixed;
+            animation: pageFadeIn 1.2s ease-out forwards;
+            opacity: 0;
+            filter: blur(2px);
+            padding: 30px 40px;
+        }
+        @keyframes pageFadeIn {
+            to {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: contentUp 1s 0.4s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #2c4e3a;
+        }
+        .home-btn {
+            padding: 10px 24px;
+            background-color: #3a6b4e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .home-btn:hover {
+            background-color: #2c543c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .doc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: contentUp 1s 0.6s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        @keyframes contentUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .countdown-wrap {
+            text-align: center;
+            margin: 70px 0 90px;
+        }
+        .count-row {
+            font-size: 32px;
+            color: #2c4e3a;
+            display: inline-flex;
+            align-items: center;
+            gap: 18px; /* 增大模块整体间距，避免相邻模块挤压重叠 */
+            white-space: nowrap;
+        }
+        /* 加宽数字框，适配两位数字不溢出 */
+        .count-num {
+            width: 76px;
+            padding: 8px 4px;
+            background-color: rgba(90, 157, 109, 0.15);
+            border: 1px solid rgba(90, 157, 109, 0.25);
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes coverAnim {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .num-inner {
+            animation: coverAnim 0.4s ease-out forwards;
+        }
+        /* 加宽单位固定宽度，完整放下“小时”两个字不被挤压 */
+        .count-unit {
+            width: 56px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .gold-text {
+            font-size: 36px;
+            margin-top: 26px;
+            white-space: nowrap;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .gold-box {
+            background-color: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 10px 22px;
+            color: #b8860b;
+            font-weight: 500;
+        }
+        .gold-separator {
+            color: #b8860b;
+            font-weight: bold;
+        }
+
+        .doc-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .review-card {
+            width: 320px;
+            background-color: rgba(90, 157, 109, 0.12);
+            border: 1px solid rgba(90, 157, 109, 0.22);
+            border-radius: 14px;
+            padding: 28px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .review-card:hover {
+            background-color: rgba(90, 157, 109, 0.18);
+        }
+        .review-card:active {
+            transform: scale(0.96);
+        }
+        .card-title {
+            font-size: 18px;
+            color: #2c4e3a;
+            font-weight: 500;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 20px;
+            font-size: 13px;
+            color: #555;
+            border-top: 1px solid #ddd;
+            animation: contentUp 1s 0.8s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        @media (max-width: 992px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            .count-row {
+                font-size: 24px;
+                gap: 12px;
+            }
+            .count-num {
+                width: 62px;
+                padding: 6px 2px;
+            }
+            .count-unit {
+                width: 44px;
+            }
+            .gold-text {
+                font-size: 28px;
+                gap: 8px;
+            }
+            .gold-box {
+                padding: 8px 15px;
+            }
+            .review-card {
+                width: 100%;
+                max-width: 360px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>市统一考试复习专区</h1>
+        <a href="index home.html" class="home-btn">Home</a>
+    </div>
+
+    <div class="doc-container">
+        <div class="countdown-wrap">
+            <div class="count-row" id="timerBox">
+                <span class="count-num"><span class="num-inner" id="dayNum">0</span></span><span class="count-unit">天</span>
+                <span class="count-num"><span class="num-inner" id="hourNum">0</span></span><span class="count-unit">小时</span>
+                <span class="count-num"><span class="num-inner" id="minNum">0</span></span><span class="count-unit">分</span>
+                <span class="count-num"><span class="num-inner" id="secNum">0</span></span><span class="count-unit">秒</span>
+            </div>
+            <div class="gold-text" id="goldWord">
+                <span class="gold-box">金榜题名</span>
+                <span class="gold-separator">·</span>
+                <span class="gold-box">蟾宫折桂</span>
+            </div>
+        </div>
+
+        <div class="doc-row">
+            <div class="review-card" id="chineseCard">
+                <div class="card-title">星球旅行者语文作文复习资料</div>
+            </div>
+            <div class="review-card" id="englishCard">
+                <div class="card-title">星球旅行者英语作文复习资料</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © World Traveler Institute for Life Inquiry，2026
+    </div>
+
+    <script>
+        const targetTime = new Date("2026-06-22 08:00:00").getTime();
+        const dayNum = document.getElementById("dayNum");
+        const hourNum = document.getElementById("hourNum");
+        const minNum = document.getElementById("minNum");
+        const secNum = document.getElementById("secNum");
+        const timerBox = document.getElementById("timerBox");
+        const goldWord = document.getElementById("goldWord");
+        goldWord.style.display = 'none';
+
+        function updateCountDown() {
+            const now = Date.now();
+            const diff = targetTime - now;
+            if (diff <= 0) {
+                timerBox.style.display = "none";
+                goldWord.style.display = "flex";
+                return;
+            }
+            const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hour = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minute = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const second = Math.floor((diff % (1000 * 60)) / 1000);
+
+            if (dayNum.textContent !== day.toString()) {
+                dayNum.style.animation = 'none';
+                void dayNum.offsetWidth;
+                dayNum.textContent = day;
+                dayNum.style.animation = 'coverAnim 0.4s ease-out forwards';
+            }
+            if (hourNum.textContent !== hour.toString()) {
+                hourNum.style.animation = 'none';
+                void hourNum.offsetWidth;
+                hourNum.textContent = hour;
+                hourNum.style.animation = 'coverAnim 0.4s ease-out forwards';
+            }
+            if (minNum.textContent !== minute.toString()) {
+                minNum.style.animation = 'none';
+                void minNum.offsetWidth;
+                minNum.textContent = minute;
+                minNum.style.animation = 'coverAnim 0.4s ease-out forwards';
+            }
+            if (secNum.textContent !== second.toString()) {
+                secNum.style.animation = 'none';
+                void secNum.offsetWidth;
+                secNum.textContent = second;
+                secNum.style.animation = 'coverAnim 0.4s ease-out forwards';
+            }
+        }
+        updateCountDown();
+        setInterval(updateCountDown, 1000);
+
+        document.getElementById("chineseCard").addEventListener("click", () => {
+            alert("该区域正在开发，敬请期待");
+        });
+        document.getElementById("englishCard").addEventListener("click", () => {
+            window.location.href = "2025学年第二学期高一（下）期末杭州市统一考试 英语应用文、读后续写准备 2.1.10021.pdf";
+        });
+    </script>
+</body>
+</html>
