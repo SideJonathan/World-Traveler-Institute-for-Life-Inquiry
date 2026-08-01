@@ -11,6 +11,10 @@
             box-sizing: border-box;
             font-family: "Microsoft Yahei", sans-serif;
         }
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+        }
 
         /* 页面入场动画 + 淡化实景背景 */
         body {
@@ -239,7 +243,7 @@
             <li><a href="index a.html">生命科学研究资料</a></li>
             <li>
                 <a href="index b.html">星球旅行者生命月刊</a>
-                <span class="new-badge">NEW</span>
+                <span class="dot-badge"></span>
             </li>
             <li><a href="index c.html">关于我们</a></li>
         </ul>
@@ -260,7 +264,7 @@
         <div class="info-notice">
             <div class="info-title">
                 星球旅行者生命月刊
-                <span class="dot-badge"></span>
+                <span class="info-new-tag">NEW</span>
             </div>
             <span class="info-tip">开发中，敬请期待</span>
         </div>
@@ -277,6 +281,111 @@
                 window.location.href = "login.html";
             }
         });
+    </script>
+    <script>
+    // 设备识别函数：手机判定，iPad视为电脑
+    function isMobileDevice() {
+        const ua = navigator.userAgent;
+        const isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) && !/iPad/i.test(ua);
+        const smallScreen = window.innerWidth <= 768;
+        return isMobileUA || smallScreen;
+    }
+    
+    window.addEventListener('load', function () {
+        const skipMobileTip = localStorage.getItem('skipMobileTip');
+        // 不是手机 或者 已经标记不再提示 → 不执行
+        if (!isMobileDevice() || skipMobileTip === 'true') return;
+    
+        // 创建强制弹窗，无关闭按钮
+        const mask = document.createElement('div');
+        mask.style = `
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.55);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:99999;
+        `;
+        const box = document.createElement('div');
+        box.style = `background:#fff;padding:26px;border-radius:12px;width:330px;text-align:center`;
+        box.innerHTML = `
+            <h3 style="margin:0 0 14px;color:#4a7c59">检测到移动设备访问</h3>
+            <p style="margin:0 0 16px;color:#555">当前页面仅适配电脑端，请切换至移动端专用页面浏览</p>
+            <label style="display:flex;gap:6px;margin:0 auto 20px;width:fit-content;">
+                <input type="checkbox" id="noRemind">本次设备后续不再提醒
+            </label>
+            <button id="goMobile" style="padding:8px 22px;background:#4a7c59;color:#fff;border:none;border-radius:6px;font-size:16px">前往移动端页面</button>
+        `;
+        mask.appendChild(box);
+        document.body.appendChild(mask);
+    
+        // 按钮点击事件
+        document.querySelector('#goMobile').onclick = function () {
+            const checkbox = document.querySelector('#noRemind');
+            if (checkbox.checked) {
+                localStorage.setItem('skipMobileTip', 'true');
+            }
+            // 替换为你的移动端网页地址
+            window.location.href = "mobile.html";
+        }
+    
+        // 禁止点击遮罩关闭弹窗
+        mask.onclick = function(e){
+            if(e.target === mask) e.stopPropagation();
+        }
+    });
+    </script>
+    <script>
+    // 1. 禁止右键菜单
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+    // 2. 禁止选中文字
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+    
+    // 3. 拦截快捷键
+    document.addEventListener('keydown', function(e) {
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+U
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+s 保存页面（可选拦截）
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+        }
+    });
+            (function() {
+        let devOpen = false;
+        const threshold = 160;
+        setInterval(() => {
+            const width = window.outerWidth - window.innerWidth;
+            const height = window.outerHeight - window.innerHeight;
+            if (width > threshold || height > threshold) {
+                if (!devOpen) {
+                    devOpen = true;
+                    alert("请勿打开开发者工具");
+                    // 可选打开就跳转页面，取消注释启用
+                    // location.href = "error.html";
+                }
+            } else {
+                devOpen = false;
+            }
+        }, 500);
+    })();
     </script>
 </body>
 </html>
