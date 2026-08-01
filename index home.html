@@ -85,7 +85,7 @@
             background-color: rgba(255,255,255,0.25);
         }
 
-        /* 导航栏柔和NEW角标 */
+        /* 导航栏柔和NEW、dot角标 */
         .new-badge {
             position: absolute;
             right: 14px;
@@ -98,7 +98,16 @@
             border-radius: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.12);
         }
-
+        .dot-badge {
+            position: absolute;
+            right: 16px;
+            top: 18px;
+            width: 9px;
+            height: 9px;
+            background-color: #d96464;
+            border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+        }
         /* 新增：页面内低对比度信息提示栏 */
         .info-notice {
             background-color: rgba(90, 157, 109, 0.12);
@@ -206,6 +215,11 @@
                 padding: 1px 4px;
                 background-color: #ce5c5c;
             }
+            .dot-badge {
+                right: 10px;
+                width: 7px;
+                height: 7px;
+            }
             .info-notice {
                 padding: 12px 16px;
                 flex-wrap: wrap;
@@ -246,7 +260,7 @@
         <div class="info-notice">
             <div class="info-title">
                 星球旅行者生命月刊
-                <span class="info-new-tag">NEW</span>
+                <span class="dot-badge"></span>
             </div>
             <span class="info-tip">开发中，敬请期待</span>
         </div>
