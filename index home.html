@@ -377,9 +377,8 @@
             if (width > threshold || height > threshold) {
                 if (!devOpen) {
                     devOpen = true;
-                    alert("请勿打开开发者工具");
-                    // 可选打开就跳转页面，取消注释启用
-                    // location.href = "error.html";
+                    const userSure = confirm("请勿打开开发者工具");
+                    if(userSure) location.reload();
                 }
             } else {
                 devOpen = false;
