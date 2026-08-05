@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面正在开发</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, "Microsoft Yahei", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #f7faf7;
+            background-image: url("");
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: contain;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 85% 80%, #d8e9dd 0%, transparent 65%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 右上角Home按钮，和截图样式完全一致 */
+        .home-btn-wrap {
+            position: absolute;
+            top: 28px;
+            right: 32px;
+        }
+        .home-btn {
+            display: inline-block;
+            padding: 10px 28px;
+            background-color: #346b48;
+            color: #ffffff;
+            border: 2px solid #224731;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .home-btn:hover {
+            background-color: #29573a;
+        }
+
+        /* 页面垂直水平居中主体 */
+        .center-content {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap:12px;
+        }
+        .center-content h1 {
+            font-size: 34px;
+            color:#2c4436;
+            font-weight:500;
+        }
+        .center-content p {
+            font-size: 20px;
+            color:#4a6456;
+        }
+
+        /* 底部版权，和截图版权文本完全相同 */
+        .footer-copyright {
+            position: absolute;
+            width: 100%;
+            bottom:36px;
+            text-align: center;
+            font-size: 15px;
+            color:#5c7467;
+        }
+
+        /* 移动端适配 */
+        @media(max-width:720px){
+            .home-btn-wrap {
+                right:20px;
+                top:20px;
+            }
+            .home-btn {
+                padding: 8px 18px;
+                font-size:14px;
+            }
+            .center-content h1 {
+                font-size:26px;
+            }
+            .center-content p {
+                font-size:17px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 右上角Home返回按钮，链接到你的 index a.html -->
+    <div class="home-btn-wrap">
+        <a href="index a.html" class="home-btn">Home</a>
+    </div>
+
+    <!-- 居中开发提示文字 -->
+    <div class="center-content">
+        <h1>该页面正在开发</h1>
+        <p>敬请期待</p>
+    </div>
+
+    <!-- 底部版权，和截图完全一致 -->
+    <div class="footer-copyright">© World Traveler Institute for Life Inquiry, 2026</div>
+</body>
+</html>
