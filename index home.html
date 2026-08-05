@@ -369,45 +369,63 @@
         }
     });
         
-        // 开发者工具检测 + 仅确定按钮弹窗（无取消选项）
-            (function() {
+    (function() {
+        // ========== 配置区 ==========
+        const ADMIN_PASSWORD = "WTILI"; 
+        const CHECK_INTERVAL = 500;
         let devOpen = false;
-        const threshold = 160;
-    // 创建全局弹窗DOM，只留确定按钮
-        function createDevAlert() {
-            const mask = document.createElement('div');
-            mask.id = 'devMask';
-            mask.style = `position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center;z-index:999999;`;
-            const box = document.createElement('div');
-            box.style = `background:#fff;padding:24px;border-radius:10px;width:320px;text-align:center;`;
-            box.innerHTML = `
-                <p style="margin:0 0 18px;font-size:16px;">请勿打开开发者工具</p>
-                <button id="devSureBtn" style="padding:8px 24px;border:none;background:#4a7c59;color:#fff;border-radius:6px;font-size:15px;">确定</button>
-            `;
-            mask.appendChild(box);
-            document.body.appendChild(mask);
-        // 仅有的确定按钮点击后刷新页面
-            document.getElementById('devSureBtn').onclick = function(){
-                mask.remove();
-                location.reload();
-            };
-        // 禁止点击遮罩关闭弹窗
-            mask.onclick = e => e.stopPropagation();
-        }
+        let isAdminVerified = false; // 管理员验证标记，验证通过后不再检测
     
-        setInterval(() => {
-            const wGap = window.outerWidth - window.innerWidth;
-            const hGap = window.outerHeight - window.innerHeight;
-            if (wGap > threshold || hGap > threshold) {
-                if (!devOpen) {
-                    devOpen = true;
-                // 弹窗只生成一次，避免重复叠加
-                    if(!document.getElementById('devMask')) createDevAlert();
+        // 检测开发者工具
+        function checkDevTools() {
+            if(isAdminVerified) return; // 已经管理员验证，不再检测
+    
+            const threshold = 160;
+            const widthDiff = window.outerWidth - window.innerWidth;
+            const heightDiff = window.outerHeight - window.innerHeight;
+            const opened = widthDiff > threshold || heightDiff > threshold;
+    
+            if(opened && !devOpen){
+                devOpen = true;
+                // 原生confirm弹窗：确定 / 取消
+                const res = confirm("检测到开发者工具已打开，请关闭后继续浏览！");
+                if(res){
+                    // 点击确定：刷新页面
+                    location.reload();
+                }else{
+                    // 点击取消：请求管理员密码
+                    const inputPwd = prompt("请输入管理员密码");
+                    if(inputPwd === ADMIN_PASSWORD){
+                        // 密码正确：关闭弹窗，停止检测
+                        isAdminVerified = true;
+                    }else{
+                        // 密码错误：刷新页面
+                        location.reload();
+                    }
                 }
-            } else {
+            }else if(!opened){
                 devOpen = false;
             }
-        }, 500);
+        }
+    
+        // 拦截快捷键 F12 / Ctrl+Shift+I / Ctrl+U
+        document.addEventListener("keydown",function(e){
+            if(isAdminVerified) return;
+            if(e.key === "F12"){
+                e.preventDefault();
+                checkDevTools();
+            }
+            if(e.ctrlKey && e.shiftKey && ["I","i"].includes(e.key)){
+                e.preventDefault();
+                checkDevTools();
+            }
+            if(e.ctrlKey && ["U","u"].includes(e.key)){
+                e.preventDefault();
+            }
+        })
+    
+    // 定时循环检测
+        setInterval(checkDevTools, CHECK_INTERVAL);
     })();
     </script>
 </body>
