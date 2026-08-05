@@ -13,21 +13,26 @@
         }
         body {
             min-height: 100vh;
-            background-color: #f7faf7;
-            background-image: url("");
+            /* 使用 background.jpg 作为背景 */
+            background: url("background.jpg");
             background-repeat: no-repeat;
-            background-position: right bottom;
-            background-size: contain;
+            background-position: center;
+            background-size: cover;
             position: relative;
             overflow-x: hidden;
+            /* 入场动画：整体淡入 */
+            animation: pageFadeIn 1.2s ease-out forwards;
+            opacity: 0;
         }
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 85% 80%, #d8e9dd 0%, transparent 65%);
-            z-index: -1;
-            pointer-events: none;
+
+        /* 页面淡入入场动画 */
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         /* 右上角Home按钮，和截图样式完全一致 */
@@ -35,6 +40,10 @@
             position: absolute;
             top: 28px;
             right: 32px;
+            /* 按钮延迟浮现 */
+            animation: elemFadeUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+            transform: translateY(-12px);
         }
         .home-btn {
             display: inline-block;
@@ -59,6 +68,10 @@
             align-items: center;
             justify-content: center;
             gap:12px;
+            /* 中间文字延迟上浮淡入 */
+            animation: elemFadeUp 1s ease-out 0.6s forwards;
+            opacity: 0;
+            transform: translateY(16px);
         }
         .center-content h1 {
             font-size: 34px;
@@ -78,6 +91,18 @@
             text-align: center;
             font-size: 15px;
             color:#5c7467;
+            /* 版权最晚出现 */
+            animation: elemFadeUp 1s ease-out 0.8s forwards;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        /* 元素上浮淡入通用动画 */
+        @keyframes elemFadeUp {
+            to {
+                opacity:1;
+                transform: translateY(0);
+            }
         }
 
         /* 移动端适配 */
@@ -100,9 +125,8 @@
     </style>
 </head>
 <body>
-    <!-- 右上角Home返回按钮，链接到你的 index a.html -->
     <div class="home-btn-wrap">
-        <a href="index a.html" class="home-btn">Home</a>
+        <a href="index home.html" class="home-btn">Home</a>
     </div>
 
     <!-- 居中开发提示文字 -->
