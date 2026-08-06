@@ -293,8 +293,14 @@
     
     window.addEventListener('load', function () {
         const skipMobileTip = localStorage.getItem('skipMobileTip');
-        // 不是手机 或者 已经标记不再提示 → 不执行
-        if (!isMobileDevice() || skipMobileTip === 'true') return;
+        // 不是手机 或者 已经标记不再提示 → 执行
+        if (isMobileDevice()) {
+            if(skipMobileTip === 'true'){
+                window.location.href = "index‑mobile.html";
+                return;
+            }
+            // 执行弹窗逻辑
+        }
     
         // 创建强制弹窗，无关闭按钮
         const mask = document.createElement('div');
@@ -313,7 +319,7 @@
             <h3 style="margin:0 0 14px;color:#4a7c59">检测到移动设备访问</h3>
             <p style="margin:0 0 16px;color:#555">当前页面仅适配电脑端，请切换至移动端专用页面浏览</p>
             <label style="display:flex;gap:6px;margin:0 auto 20px;width:fit-content;">
-                <input type="checkbox" id="noRemind">本次设备后续不再提醒
+                <input type="checkbox" id="noRemind">本设备后续不再提醒
             </label>
             <button id="goMobile" style="padding:8px 22px;background:#4a7c59;color:#fff;border:none;border-radius:6px;font-size:16px">前往移动端页面</button>
         `;
