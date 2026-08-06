@@ -296,11 +296,10 @@
         // 不是手机 或者 已经标记不再提示 → 执行
         if (isMobileDevice()) {
             if(skipMobileTip === 'true'){
-                window.location.href = "index‑mobile.html";
+                window.location.href = "index mobile.html";
                 return;
             }
             // 执行弹窗逻辑
-        }
     
         // 创建强制弹窗，无关闭按钮
         const mask = document.createElement('div');
@@ -339,6 +338,7 @@
         // 禁止点击遮罩关闭弹窗
         mask.onclick = function(e){
             if(e.target === mask) e.stopPropagation();
+        }
         }
     });
     </script>
